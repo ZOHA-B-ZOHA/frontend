@@ -1,17 +1,29 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Main v-if="isMainVisible" v-on:toggleMain="toggleMain" />
+    <Pad v-else v-on:toggleMain="toggleMain"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Main from './components/Main.vue'
+import Pad from './components/Pad.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Main,
+    Pad
+  },
+  data: function() { // 왜 함수여야 하는 거지?
+    return {
+      isMainVisible: true,
+    }
+  },
+  methods: {
+    toggleMain: function() {
+      this.isMainVisible = !this.isMainVisible
+    }
   }
 }
 </script>
